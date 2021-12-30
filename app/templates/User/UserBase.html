@@ -1,0 +1,55 @@
+{% extends "Base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='Styles/User/UserBase.css') }}">
+    {% block userhead %} {% endblock %}
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="main">
+
+            <!-- This is the header of the page -->
+            <header>
+                <div class="title">
+                    <h3>AppName</h3>
+                </div>
+                <div class="reg_link">
+                    {% if title == "Login" %}
+                        <p>If you don't have an account </p>
+                        <a href="{{ url_for('users.register') }}">Sign up</a>
+                    {% elif title == "Registration" %}
+                        <a href="{{ url_for('users.login') }}" style="margin-left: auto;">Sign in</a>
+                    {% else %}
+                        <p>If you don't have an account </p>
+                        <a href="{{ url_for('users.register') }}">Sign up</a>
+                    {% endif %}
+                </div>
+            </header>
+            
+            {% block userbody %}  {% endblock %}
+
+        </div>
+
+        <!-- The footer -->
+        <footer class="footer">
+            <div class="copy">
+                Copyrights © 2021
+            </div>
+            <div class="smi">
+                <a href="#">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="#">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </footer>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,151 @@
+{% extends "User/UserBase.html" %}
+
+{% block userhead %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='Styles/User/Register.css') }}">
+{% endblock %}
+
+{% block userbody %}
+
+    <div class="form_container">
+        <form action="" class="form" method="post" enctype="multipart/form-data">
+            <div class="logo">
+                <div class="form_icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h2 class="form_title">
+                    Registration
+                </h2>
+                <p class="det">
+                    Join an unlimited world!
+                </p>
+            </div>
+            <div class="forms">
+
+                <div class="data" id="data1">
+                    {{form.hidden_tag()}}
+                    <div class="form-group grp1">
+                        {{ form.firstname.label() }}
+                        {% if form.firstname.errors %}
+                            {{form.firstname(placeholder="Firstname", class="wrong_input")}}
+                            {% for err in form.firstname.errors %}
+                                <span class="error">{{ err }}</span>
+                            {% endfor %}
+                        {% else %}
+                            {{form.firstname(placeholder="Firstname", id='frst')}}
+                        {% endif %}
+                        <span class="error" id='fr_er'></span>
+                    </div>
+                    <div class="form-group">
+                        {{ form.lastname.label() }}
+                        {% if form.lastname.errors %}
+                            {{form.lastname(placeholder="Lastname", class="wrong_input")}}
+                            {% for err in form.lastname.errors %}
+                                <span class="error">{{ err }}</span>
+                            {% endfor %}
+                        {% else %}
+                            {{form.lastname(placeholder="Lastname", id='lst')}}
+                        {% endif %}
+                        <span class="error" id='ls_er'></span>
+                    </div>
+                    <div class="form-group">
+                        {{ form.username.label() }}
+                        {% if form.username.errors %}
+                            {{form.username(placeholder="Username", class="wrong_input")}}
+                            {% for err in form.username.errors %}
+                                <span class="error">{{ err }}</span>
+                            {% endfor %}
+                        {% else %}
+                            {{form.username(placeholder="Username", id='usr')}}
+                        {% endif %}
+                        <span class="error" id='us_er'></span>
+                    </div>
+
+                    <!-- The control buttons -->
+                    <div class="form-group next hide_next">
+                        <button type="button" id="next1">
+                            Next
+                            <i class="fas fa-arrow-right" style="margin-left:5px"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="data" id="data2">
+                    
+                    <div class="form-group grp1">
+                        {{ form.email.label() }}
+                        {% if form.email.errors %}
+                            {{form.email(placeholder="Email", class="wrong_input")}}
+                            {% for err in form.email.errors %}
+                                <span class="error">{{ err }}</span>
+                            {% endfor %}
+                        {% else %}
+                            {{form.email(placeholder="Email", id='email')}}
+                        {% endif %}
+                        <span class="error" id='fr_er'></span>
+                    </div>
+                    <div class="form-group">
+                        {{ form.password.label() }}
+                        {% if form.password.errors %}
+                            {{form.password(placeholder="Password", class="wrong_input")}}
+                            {% for err in form.password.errors %}
+                                <span class="error">{{ err }}</span>
+                            {% endfor %}
+                        {% else %}
+                            {{form.password(placeholder="Password", id='pwd')}}
+                        {% endif %}
+                        <span class="error" id='ls_er'></span>
+                    </div>
+                    <div class="form-group">
+                        {{ form.confirm_password.label() }}
+                        {% if form.confirm_password.errors %}
+                            {{form.confirm_password(placeholder="Confirm Password", class="wrong_input")}}
+                            {% for err in form.confirm_password.errors %}
+                                <span class="error">{{ err }}</span>
+                            {% endfor %}
+                        {% else %}
+                            {{form.confirm_password(placeholder="Confirm Password", id='c_pwd')}}
+                        {% endif %}
+                        <span class="error" id='us_er'></span>
+                    </div>
+
+                    <!-- The control buttons -->
+                    <div class="form-group next hide_next">
+                        <button type="button" class="back" id="back1">
+                            <i class="fas fa-arrow-left" style="margin-right:5px"></i>
+                            Back
+                        </button>
+                        <button type="button" id="next2">
+                            Next
+                            <i class="fas fa-arrow-right" style="margin-left:5px"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="data" id="data3">
+                    
+                    <div class="form-group-picture grp1">
+                        <button id="import_pic_btn" type="button">Import Picture</button>
+                        <span id="pic_name">The picture name.</span>
+                        {{ form.picture(id="file") }}
+                    </div>
+
+                    <div class="form-group-picture">
+                        <img src="{{ url_for('static', filename='images/default.jpg') }}" alt="Imported picture" id="img">
+                    </div>
+
+                    <div class="form-group-picture next">
+                        <button type="button" class="back" id="back2">
+                            <i class="fas fa-arrow-left" style="margin-right:5px"></i>
+                            Back
+                        </button>
+                        {{ form.submit(id="submit") }}
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='Scripts/User/Register.js') }}"></script>
+{% endblock %}

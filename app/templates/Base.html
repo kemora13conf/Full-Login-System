@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {% if title %}
+        <title>App - {{ title }} </title>
+    {% else %}
+        <title>App</title>
+    {% endif %}
+
+    <!-- Here we will import file like css's and fonts -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='Styles/Base.css') }}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='Styles/css/all.css') }}">
+    {% block head %}{% endblock %}
+
+</head>
+<body>
+    <!-- Here will contain the content of the page -->
+    {% block body %}{% endblock %}
+
+    <!-- The flash messages box -->
+    {% if get_flashed_messages() %}
+        <div class="flash_container" id="flash_container">
+            {% for category, message in get_flashed_messages(with_categories=true) %}
+                <div class="flash" id="flash">
+                    <div class="flash_hd">
+                        {{ category }}
+                    </div>
+                    <div class="flash_body">
+                        <div class="flash_text">
+                            {{ message }}
+                        </div>
+                        <div class="close_flash">
+                            <button type="buttton" id='close_flash'>Done</button>
+                        </div>
+                    </div>
+                    <div class="flash_icon">
+                        {% if category == 'Succes' %}
+                            <img src="{{ url_for('static', filename='/icons/Succes.png') }}" alt="icon">
+                        {% else %}
+                            <img src="{{ url_for('static', filename='/icons/Cancel.png') }}" alt="icon">
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <script src='{{ url_for("static", filename="Scripts/Base.js") }}'></script>
+    {% block scripts %}{% endblock %}
+    
+</body>
+</html>

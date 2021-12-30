@@ -1,0 +1,109 @@
+@font-face {
+    font-family: nunito;
+    src: url(../font_family/Nunito.ttf);
+}
+@font-face {
+    font-family: solway;
+    src: url(../font_family/Solway.ttf);
+}
+*{
+    padding: 0;
+    margin: 0;
+    font-family: nunito;
+}
+body{
+    background: white;
+}
+a{
+    text-decoration: none;
+}
+li{
+    list-style: none;
+}
+.flash_container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: calc(100% - 14px);
+    height: calc(100vh - 14px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 7px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+}
+.flash{
+    max-width: 350px;
+    width: calc(100% - 20px);
+    height: max-content;
+    padding: 10px;
+    display: grid;
+    grid-gap: 5px;
+    overflow: hidden;
+    background: rgba(237, 237, 237, 0.138);
+    backdrop-filter: blur(5px);
+    box-shadow: 0px 10px 15px -5px rgba(0, 0, 0, 0.2),
+                0px 0px 3px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+.flash_hd{
+    grid-row: 1;
+    grid-column-start: 1;
+    grid-column-end: 3;
+
+    font-size: 30px;
+    font-weight: bolder;
+    font-family: solway;
+    color: #262626;
+}
+.flash_body{
+    grid-row: 2;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+.flash_body .flash_text{
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #262626;
+}
+.flash_body .close_flash button{
+    padding: 3px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    background: rgb(206, 206, 206);
+    color: #262626;
+    border-radius: 2.5px;
+    box-shadow: 0px 7px 12px -3px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+.flash_icon{
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.flash_icon img{
+    width: 70px;
+    height: 70px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1),
+                0px 0px 3px rgba(0, 0, 0, 0.15);
+    border-radius: 50%;
+}
+.animate_flash{
+    animation: animate_f 1s;
+}
+@keyframes animate_f {
+    0%{
+        margin-left: 0%;
+    }
+    100%{
+        margin-left: 100%;
+    }
+}

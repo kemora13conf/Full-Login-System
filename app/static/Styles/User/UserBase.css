@@ -1,0 +1,126 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.container{
+    width: 100%;
+    min-height: calc(100vh - 50px);
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.main{
+    width: 100%;
+    min-height: calc(100vh - 110px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: calc(100% - 40px);
+    padding: 0px 20px;
+    height: 50px;
+    background: #262626;
+    box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+header .title{
+    font-size: 23px;
+    color: whitesmoke;
+}
+header .title, header .reg_link{
+    width: 100%;
+    height: max-content;
+}
+.reg_link{
+    display: flex;
+    align-items: center;
+}
+.reg_link p{
+    margin-left: auto;
+    margin-right: 10px;
+    color: white;
+    font-weight: bold;
+}
+.reg_link a{
+    padding: 4px 20px;
+    border-radius: 4px;
+    background: rgb(0, 120, 255);
+    color: white;
+    font-weight: bold;
+    box-shadow: 0px 7px 10px -5px rgba(0, 0, 0, 0.4);
+    transition: all .3s;
+}
+.reg_link a:hover{
+    background: rgb(0, 100, 255);
+}
+
+
+/*Style the footer */
+footer{
+    width: calc(100% - 40px);
+    padding: 0px 20px;
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+    background: white;
+}
+.copy{
+    color: #262626;
+    font-size: 23px;
+    font-weight: bold;
+}
+.smi{
+    display: flex;
+}
+.smi a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 5px;
+}
+.smi a i{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: #262626;
+    color: white;
+    font-size: 20px;
+    box-shadow: 0px 3px 5px rgb(0, 0, 0, 0.3);
+    transition: all .3s;
+}
+.smi a i:hover{
+    background:rgb(0, 120, 255);
+}
+
+@media only screen and (max-width: 620px){
+    .reg_link p{
+        display: none;
+    }
+    .reg_link a{
+        margin-left: auto;
+    }
+    footer{
+        height: auto;
+        padding: 5px 20px;
+    }
+    .copy{
+        margin: 5px 0px;
+    }
+    .msi{
+        margin: 5px 0px;
+    }
+}

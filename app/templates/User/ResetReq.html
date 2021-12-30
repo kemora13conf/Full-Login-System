@@ -1,0 +1,38 @@
+{% extends "User/UserBase.html" %}
+{% block userhead %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='Styles/User/ResetReq.css') }}">
+{% endblock %}
+
+{% block userbody %}
+
+    <div class="form_container">
+        <div class="form_header">
+            <i class="fas fa-envelope"></i>
+            <div>
+                <h3>Check</h3>
+                <p>Enter Your Email</p>
+            </div>
+        </div>
+        <form action="", method='post'>
+            {{form.hidden_tag()}}
+            <div class="form-group">
+                {{ form.email.label() }}
+                <div class="inpt">
+                    <i class="fas fa-envelope"></i>
+                    {% if form.email.errors %}
+                        {{form.email(placeholder="Email", class="wrong_input")}}
+                    {% else %}
+                        {{form.email(placeholder="Email")}}
+                    {% endif %}
+                </div>
+                {% for err in form.email.errors %}
+                    <span class="error">{{ err }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-group submit">
+                {{ form.submit() }}
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
