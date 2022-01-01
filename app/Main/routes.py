@@ -1,15 +1,12 @@
 from . import main
 from flask_login import login_required
-from flask import redirect, url_for, request
+from flask import render_template, redirect, url_for, request
 
 @main.route('/')
 @main.route('/Home')
 @login_required
 def home():
-    return f"""
-    <h1> Welcome Home </h1>
-    <a href='{ url_for('users.logout') }'> logout </a>
-    """
+    return render_template("Main/MainBase.html", title="Home")
 
 @main.route('/Posts')
 @login_required

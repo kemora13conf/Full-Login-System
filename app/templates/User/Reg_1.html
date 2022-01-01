@@ -1,0 +1,83 @@
+{% extends "User/UserBase.html" %}
+
+{% block userhead %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='Styles/User/Reg_1.css') }}">
+{% endblock %}
+
+{% block userbody %}
+
+    <div class="form_container">
+        <div class="logo">
+            <div class="form_icon">
+                <i class="fas fa-user"></i>
+            </div>
+            <h2 class="form_title">
+                Registration
+            </h2>
+            <p class="det">
+                Join an unlimited world!
+            </p>
+        </div>
+
+        <form action="" class="form" method="post">
+            {{form.hidden_tag()}}
+            <div class="form_head">
+                <div class="name">Sign up</div>
+                <div class="progress">
+                    <div class="spans">
+                        <span>1</span>
+                        <span>2</span>
+                        <span>3</span>
+                    </div>
+                    <div class="bet_spans"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                {{ form.firstname.label() }}
+                <div class="inpt">
+                    <i class="fas fa-user"></i>
+                    {{form.firstname(placeholder="Firstname")}}
+                </div>
+                {% if form.firstname.errors %}
+                    {% for err in form.firstname.errors %}
+                        <span class="error">{{ err }}</span>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.lastname.label() }}
+                <div class="inpt">
+                    <i class="fas fa-user"></i>
+                    {{form.lastname(placeholder="Lastname")}}
+                </div>
+                {% if form.lastname.errors %}
+                    {% for err in form.lastname.errors %}
+                        <span class="error">{{ err }}</span>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.username.label() }}
+                <div class="inpt">
+                    <i class="fas fa-user-alt"></i>
+                    {{form.username(placeholder="Username")}}
+                </div>
+                {% if form.username.errors %}
+                    {% for err in form.username.errors %}
+                        <span class="error">{{ err }}</span>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <!-- The control buttons -->
+            <div class="form-group-submit">
+                <button type="submit" id="next1">
+                    Next
+                    <i class="fas fa-arrow-right" style="margin-left:5px"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

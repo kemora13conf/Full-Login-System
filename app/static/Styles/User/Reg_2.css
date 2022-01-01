@@ -1,0 +1,6 @@
+.form_head .progress .spans span:nth-child(2){
+    background: #262626;
+}
+.form_head .progress .bet_spans::before{
+    background: #262626;
+}

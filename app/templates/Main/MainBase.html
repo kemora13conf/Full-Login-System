@@ -1,0 +1,69 @@
+{% extends "Base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='Styles/Main/MainBase.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="main">
+
+            <header class="header">
+                <div class="menu_btn">
+                    <button class="btn_menu", id="btn_menu">
+                        <span></span>
+                    </button>
+                </div>
+                <div class="title">
+                    <a href="/">AppName</a>
+                </div>
+                <nav class="menu">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-home"></i>
+                                <p>Home</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-shopping-bag"></i>
+                                <p>Job</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-address-card"></i>
+                                <p>About</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="selector"></div>
+                </nav>
+                <div class="profile">
+                    <div class="icon">
+                        <div class="user">
+                            {{ current_user.firstname }} {{ current_user.lastname }}
+                        </div>
+                        <img id='pro_btn' src="{{ url_for('static', filename='Profiles/' + current_user.picture) }}" alt="{{ current_user.firstname }} {{ current_user.lastname }}">
+                    </div>
+                    <div class="profile_menu">
+                        <a href="#">
+                            <i class="fas fa-user"></i>
+                            <p>Profile</p>
+                        </a>
+                        <a href="{{ url_for('users.logout') }}">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <p>Logout</p>
+                        </a>
+                    </div>
+                </div>
+            </header>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='Scripts/Main/MainBase.js') }}"></script>
+{% endblock %}

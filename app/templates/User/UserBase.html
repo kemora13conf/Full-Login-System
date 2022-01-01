@@ -18,12 +18,13 @@
                 <div class="reg_link">
                     {% if title == "Login" %}
                         <p>If you don't have an account </p>
-                        <a href="{{ url_for('users.register') }}">Sign up</a>
+                        <a href="{{ url_for('users.reg_1') }}">Sign up</a>
                     {% elif title == "Registration" %}
-                        <a href="{{ url_for('users.login') }}" style="margin-left: auto;">Sign in</a>
+                        <p>If you already have an account </p>
+                        <a href="{{ url_for('users.login') }}" >Sign in</a>
                     {% else %}
                         <p>If you don't have an account </p>
-                        <a href="{{ url_for('users.register') }}">Sign up</a>
+                        <a href="{{ url_for('users.reg_1') }}">Sign up</a>
                     {% endif %}
                 </div>
             </header>

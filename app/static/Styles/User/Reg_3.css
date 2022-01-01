@@ -1,0 +1,74 @@
+.form_head .progress .spans span:nth-child(3){
+    background: #262626;
+}
+.form_head .progress .bet_spans::after{
+    background: #262626;
+}
+.form-group-picture{
+    --pad: 40px;
+    width: calc(100% - var(--pad));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.form-group-picture .import_btn{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.form-group-picture .import_btn button{
+    width: 100%;
+    padding: 5px 0px;
+    font-size: 18px;
+    background: #545454;
+    box-shadow: 0px 7px 15px rgba(0, 0, 0, 0.1),
+                0px 0px 3px rgba(0, 0, 0, 0.3);
+    color: white;
+    border-radius: 7px;
+    border: none;
+    outline: none;
+    transition: all .2s;
+    cursor: pointer;
+}
+.form-group-picture .import_btn button:hover{
+    background: #262626;
+}
+.form-group-picture .import_btn input{
+    display: none;
+}
+.form-group-picture .picture{
+    width: 100%;
+}
+.form-group-picture .picture img{
+    width: 100%;
+    max-height: 200px;
+    height: 200px;
+    border-radius: 7px;
+    object-fit: cover;
+    object-position: top center;
+}
+.form-group-submit input{
+    border: none;
+    outline: none;
+    background: #545454;
+    box-shadow: 0px 7px 15px rgba(0, 0, 0, 0.1),
+                0px 0px 3px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    border-radius: 7px;
+    padding: 5px 0px;
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    cursor: pointer;
+    transition: all .2s;
+}
+.form-group-submit input:hover{
+    background: #262626;
+    color: white;
+    box-shadow: 0px 7px 15px rgba(0, 0, 0, 0.1),
+                0px 0px 3px rgba(0, 0, 0, 0.3);
+}

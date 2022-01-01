@@ -4,28 +4,38 @@ from wtforms import StringField, BooleanField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Length, EqualTo, Email, ValidationError
 from ..Models import Users
 
-class RegistrationForm(FlaskForm):
+class Reg_1_Form(FlaskForm):
     ''''
     This object render the form's input for Html
     '''
     firstname = StringField('Firstname', validators=[DataRequired(), Length(min=2, max=30)])
     lastname = StringField('Lastname ', validators=[DataRequired(), Length(min=2, max=30)])
     username = StringField('Username ', validators=[DataRequired(), Length(min=6, max=30)])
-    email = StringField('Email', validators=[DataRequired(), Length(min=2, max=30), Email()])
-    password = PasswordField('Password', validators=[DataRequired(), Length(min=6, max=30)])
-    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo("password")])
-    picture = FileField('Your Profile :', validators=[FileAllowed(['jpg','png'])])
-    submit = SubmitField('Sign Up')
 
     def validate_username(self, username):
         user = Users.query.filter_by(username=self.username.data).first()
         if user:
             raise ValidationError('This username is already taken!')
-    
+
+class Reg_2_Form(FlaskForm):
+    ''''
+    This object render the form's input for Html
+    '''
+    email = StringField('Email', validators=[DataRequired(), Length(min=2, max=30), Email()])
+    password = PasswordField('Password', validators=[DataRequired(), Length(min=6, max=30)])
+    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo("password")])
+
     def validate_email(self, email):
         user = Users.query.filter_by(email=self.email.data).first()
         if user:
             raise ValidationError('This email is already exist!')
+            
+class Reg_3_Form(FlaskForm):
+    ''''
+    This object render the form's input for Html
+    '''
+    picture = FileField('Your Profile :', validators=[FileAllowed(['jpg','png'])])
+    submit = SubmitField('Sign Up')
 
 class LoginForm(FlaskForm):
     ''''

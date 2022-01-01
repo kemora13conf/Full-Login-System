@@ -1,0 +1,88 @@
+{% extends "User/UserBase.html" %}
+
+{% block userhead %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='Styles/User/Reg_1.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='Styles/User/Reg_2.css') }}">
+{% endblock %}
+
+{% block userbody %}
+
+    <div class="form_container">
+        <div class="logo">
+            <div class="form_icon">
+                <i class="fas fa-user"></i>
+            </div>
+            <h2 class="form_title">
+                Registration
+            </h2>
+            <p class="det">
+                Join an unlimited world!
+            </p>
+        </div>
+
+        <form action="" class="form" method="post">
+            {{form.hidden_tag()}}
+            <div class="form_head">
+                <div class="name">Sign up</div>
+                <div class="progress">
+                    <div class="spans">
+                        <span><i class="fas fa-check"></i></span>
+                        <span>2</span>
+                        <span>3</span>
+                    </div>
+                    <div class="bet_spans"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                {{ form.email.label() }}
+                <div class="inpt">
+                    <i class="fas fa-envelope"></i>
+                    {{form.email(placeholder="Email")}}
+                </div>
+                {% if form.email.errors %}
+                    {% for err in form.email.errors %}
+                        <span class="error">{{ err }}</span>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.password.label() }}
+                <div class="inpt">
+                    <i class="fas fa-lock"></i>
+                    {{form.password(placeholder="Password")}}
+                </div>
+                {% if form.password.errors %}
+                    {% for err in form.password.errors %}
+                        <span class="error">{{ err }}</span>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.confirm_password.label() }}
+                <div class="inpt">
+                    <i class="fas fa-lock"></i>
+                    {{form.confirm_password(placeholder="Confirm Password")}}
+                </div>
+                {% if form.confirm_password.errors %}
+                    {% for err in form.confirm_password.errors %}
+                        <span class="error">{{ err }}</span>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <!-- The control buttons -->
+            <div class="form-group-submit">
+                <button type="submit" id="next1">
+                    Next
+                    <i class="fas fa-arrow-right" style="margin-left:5px"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='Scripts/User/Register.js') }}"></script>
+{% endblock %}

@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect, url_for, request, jsonify, json
 from . import users
-from .forms import RegistrationForm, LoginForm, ResetReqForm, ResetPasswordForm
+from .forms import Reg_1_Form, Reg_2_Form, Reg_3_Form, LoginForm, ResetReqForm, ResetPasswordForm
 from ..Models import Users
 from .. import db, bcrypt
 from flask_login import login_user, logout_user, current_user, login_required
@@ -11,27 +11,65 @@ from .utils import crop_pic, send_reset_email
 """
 
 
-@users.route('/Registration', methods=['GET','POST'])
-def register():
+# The registration views
+
+@users.route('/Registration-Part-1', methods=['GET','POST'])
+def reg_1():
     if current_user.is_authenticated:
         return redirect(url_for('main.home'))
-    form = RegistrationForm()
+
+    form = Reg_1_Form()
     if form.validate_on_submit():
-        hash_pwd = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        userInfo = {
+            'firstname': form.firstname.data,
+            'lastname': form.lastname.data,
+            'username': form.username.data
+        }
+
+        return redirect(url_for('users.reg_2', userInfo=json.dumps(userInfo)))
+    return render_template('User/Reg_1.html', title="Registration",
+                            form=form)
+
+@users.route('/Registration-Part-2/<userInfo>', methods=['GET','POST'])
+def reg_2(userInfo):
+    if current_user.is_authenticated:
+        return redirect(url_for('main.home'))
+
+    userInfo = json.loads(userInfo)
+    form=Reg_2_Form()
+    if form.validate_on_submit():
+
+        userInfo['email'] = form.email.data
+        userInfo['password'] = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+
+        return redirect(url_for('users.reg_3', userInfo=json.dumps(userInfo)))
+    return render_template('User/Reg_2.html', title="Registration",
+                            form=form)
+@users.route('/Registration-Part-3/<userInfo>', methods=['GET','POST'])
+def reg_3(userInfo):
+    if current_user.is_authenticated:
+        return redirect(url_for('main.home'))
+
+    userInfo = json.loads(userInfo)
+    form=Reg_3_Form()
+    if form.validate_on_submit():
+        
         picture = crop_pic(form.picture.data)
-        user = Users(firstname=form.firstname.data, lastname=form.lastname.data, username=form.username.data, email=form.email.data, password=hash_pwd, picture=picture)
+        user = Users(firstname=userInfo['firstname'], lastname=userInfo['lastname'], username=userInfo['username'], email=userInfo['email'], password=userInfo['password'], picture=picture)
         db.session.add(user)
         db.session.commit()
-        user = Users.query.filter_by(username=form.username.data).first()
+        userInfo.clear()
+        user = Users.query.filter_by(username=userInfo['username']).first()
         if user:
             login_user(user)
             flash('Account created succesfully!',category='Succes')
             return redirect(url_for('main.home'))
         flash('Something went wrong!', category="Warning")
-        return redirect(url_for('users.register'))
-    return render_template('User/Register.html', title="Registration",
+        return redirect(url_for('users.reg_1'))
+    return render_template('User/Reg_3.html', title="Registration",
                             form=form)
 
+# The login and the password reset views
 @users.route('/Login', methods=['GET','POST'])
 def login():
     if current_user.is_authenticated:
